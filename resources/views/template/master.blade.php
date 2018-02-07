@@ -5,11 +5,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title')</title>
-  <!-- CSS&JS Global-->
+  <!-- CSS Global-->
   <link href="{{ URL::to('assets/css/style4963.css?ver=1.1') }}" rel="stylesheet" type="text/css">
   <link href="{{ URL::to('assets/css/colors/main.css') }}" id="colors" rel="stylesheet" type="text/css">
-
-  <!-- /CSS&JS Global-->
+	<!-- /CSS Global-->
+	<!-- JS Global-->
+	<script type="text/javascript" src="{{ URL::to('js/vue.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('js/axios.js')}}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/jquery-2.2.0.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/jquery-ui.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/jpanelmenu.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/chosen.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/slick.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/rangeslider.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/magnific-popup.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/waypoints.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/counterup.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/tooltips.min.js') }}"></script>
+	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/custom.js') }}"></script>
+  <!-- /JS Global-->
 	@yield('styles')
 </head>
 
@@ -30,17 +44,7 @@
   </div>
   <!-- /page container -->
   <!-- JS Global-->
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/jquery-2.2.0.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/jquery-ui.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/jpanelmenu.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/chosen.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/slick.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/rangeslider.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/magnific-popup.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/waypoints.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/counterup.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/tooltips.min.js') }}"></script>
-  <script defer type="text/javascript" src="{{ URL::to('assets/scripts/custom.js') }}"></script>
+
   <!-- JS Global-->
   @yield('scripts')
 </body>
