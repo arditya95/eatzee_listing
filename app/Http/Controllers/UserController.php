@@ -8,10 +8,6 @@ use App\User;
 
 class UserController extends Controller
 {
-  // public function getSignup(){
-  //   return view('user');
-  // }
-
   public function postSignup(Request $request)
   {
     $this->validate($request,[
@@ -28,18 +24,11 @@ class UserController extends Controller
       'password' => bcrypt($request->input('password'))
     ]);
     $user->save();
-
     Auth::login($user);
-
     return redirect()->route('index');
   }
 
-  // public function getSignin(){
-  //   return view('user.signin');
-  // }
-
   public function postSignin(Request $request){
-    // return $request;
     $this->validate($request, [
       'username' => 'required',
       'password' => 'required|min:4'
@@ -51,9 +40,9 @@ class UserController extends Controller
     return redirect()->back();
   }
 
-  // public function getProfile(){
-  //   return view('index');
-  // }
+  public function getProfile(){
+    return view('user.index');
+  }
 
   public function getLogout(){
     Auth::logout();

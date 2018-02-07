@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title')</title>
   <!-- CSS Global-->
-  <link href="{{ URL::to('assets/css/style4963.css?ver=1.1') }}" rel="stylesheet" type="text/css">
+  <link href="{{ URL::to('assets/css/style.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ URL::to('assets/css/colors/main.css') }}" id="colors" rel="stylesheet" type="text/css">
 	<!-- /CSS Global-->
 	<!-- JS Global-->
@@ -28,15 +28,17 @@
 </head>
 
 <body class="sidebar-xs">
-  @include('template.master-navbar')
+  @include('template.profile-navbar')
   <!-- Page container -->
   <div class="page-container">
     <!-- Page content -->
     <div class="page-content">
-      {{-- @include('template.master-sidebar') --}}
+      @include('template.profile-sidebar')
       <!-- Main content -->
       <div class="content-wrapper">
-        @yield('content')
+				<div id="dashboard">
+					@yield('content')
+				</div>
       </div>
       <!-- /main content -->
     </div>
