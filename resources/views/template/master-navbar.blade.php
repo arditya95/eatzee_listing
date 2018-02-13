@@ -16,17 +16,18 @@
           <!-- User Menu -->
           @if (Auth::check())
             <div class="user-menu">
-              <div class="user-name"><span><img src="#" alt=""></span>Doni Agustina</div>
+              <div class="user-name"><span><img src="#" alt=""></span>{{Auth::user()->name}}</div>
               <ul>
                 <li><a href="#"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
                 <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
-                <li><a href="#"><i class="sl sl-icon-user"></i> My Profile</a></li>
+                <li><a href="{{route('user.profile')}}"><i class="sl sl-icon-user"></i> My Profile</a></li>
                 <li><a href="{{route('user.logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
               </ul>
             </div>
           @else
             <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
           @endif
+          <!-- User Menu / End -->
           <a href="#" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
         </div>
       </div>
@@ -49,25 +50,18 @@
                 <p class="form-row form-row-wide">
                   <label for="username">Username:
                     <i class="im im-icon-Male"></i>
-                    <input type="text" class="input-text" name="username" id="username" value="" />
+                    <input type="text" class="input-text" name="username" id="username" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="password">Password:
                     <i class="im im-icon-Lock-2"></i>
-                    <input class="input-text" type="password" name="password" id="password"/>
+                    <input class="input-text" type="password" name="password" id="password" required/>
                   </label>
-                  {{-- <span class="lost_password">
-                    <a href="#" >Lost Your Password?</a>
-                  </span> --}}
                 </p>
                 <div class="form-row">
                   {{csrf_field()}}
-                  <input type="submit" class="button border margin-top-5" name="login" value="Login" />
-                  {{-- <div class="checkboxes margin-top-10">
-                    <input id="remember-me" type="checkbox" name="check">
-                    <label for="remember-me">Remember Me</label>
-                  </div> --}}
+                  <input type="submit" class="button border margin-top-5" name="login" value="Login"/>
                 </div>
               </form>
             </div>
@@ -77,35 +71,29 @@
                 <p class="form-row form-row-wide">
                   <label for="name">Name:
                     <i class="im im-icon-Male"></i>
-                    <input type="text" class="input-text" name="name" id="name" value="" />
+                    <input type="text" class="input-text" name="name" id="name" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="username">Username:
                     <i class="im im-icon-Male"></i>
-                    <input type="text" class="input-text" name="username" id="username" value="" />
+                    <input type="text" class="input-text" name="username" id="username" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="email">Email Address:
                     <i class="im im-icon-Mail"></i>
-                    <input type="email" class="input-text" name="email" id="email" value="" />
+                    <input type="email" class="input-text" name="email" id="email" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="password">Password:
                     <i class="im im-icon-Lock-2"></i>
-                    <input class="input-text" type="password" name="password" id="password"/>
+                    <input class="input-text" type="password" name="password" id="password" required/>
                   </label>
                 </p>
-                {{-- <p class="form-row form-row-wide">
-                  <label for="password2">Repeat Password:
-                    <i class="im im-icon-Lock-2"></i>
-                    <input class="input-text" type="password" name="password2" id="password2"/>
-                  </label>
-                </p> --}}
                 {{csrf_field()}}
-                <input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
+                <input type="submit" class="button border fw margin-top-10" name="register" value="Register"/>
               </form>
             </div>
           </div>
