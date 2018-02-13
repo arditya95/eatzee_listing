@@ -145,7 +145,7 @@ table {
 
 th, td {
     text-align: left;
-    padding: 5px;    
+    padding: 5px;
     border-bottom: 1px solid #3f3737;
 }
 
@@ -202,8 +202,8 @@ img.footer-logo {
 
 .header-widget .sign-in {
     position: relative;
-    color: #333;    
-    margin-right: 25px;    
+    color: #333;
+    margin-right: 25px;
     top: 10px;
     display: inline-block;
     vertical-align: top;
@@ -226,13 +226,13 @@ header.fullwidth .container {
 
 .left-side {
     float: left;
-    width: 65%;
+    width: 50%;
     display: inline-block;
 }
 
 .right-side {
     float: right;
-    width: 35%;
+    width: 50%;
     display: inline-block;
 }
 
@@ -2626,7 +2626,7 @@ button.fs-map-btn.button {
         transition: .3s transform;
 
     }
-      
+
     div.desc {
         padding: 5px;
         text-align: center;

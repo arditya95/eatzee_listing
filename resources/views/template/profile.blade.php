@@ -38,6 +38,7 @@
       <div class="content-wrapper">
 				<div id="dashboard">
 					@yield('content')
+					<!-- Copyrights -->
 				</div>
       </div>
       <!-- /main content -->

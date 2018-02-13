@@ -1,62 +1,61 @@
 @extends('template.profile')
 
 @section('title')
-	User Profile
+	My Profile
 @endsection
 
 @section('content')
-
   <div class="dashboard-content">
-    <!-- Titlebar -->
-    <div id="titlebar">
-      <div class="row">
-        <div class="col-md-12">
-          <h2>My Profile</h2>
-          <!-- Breadcrumbs -->
-          <nav id="breadcrumbs">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Dashboard</a></li>
-              <li>My Profile</li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <!-- Profile -->
       <div class="col-lg-6 col-md-12">
         <div class="dashboard-list-box margin-top-0">
           <h4 class="gray">Profile Details</h4>
           <div class="dashboard-list-box-static">
-            <!-- Avatar -->
-            <div class="edit-profile-photo">
-              <img src="images/user-avatar.jpg" alt="">
-              <div class="change-photo-btn">
-                <div class="photoUpload">
-                  <span><i class="fa fa-upload"></i> Upload Photo</span>
-                  <input type="file" class="upload" />
-                </div>
-              </div>
-            </div>
-            <!-- Details -->
-            <div class="my-profile">
-              <label>Your Name</label>
-              <input value="Tom Perrin" type="text">
-              <label>Phone</label>
-              <input value="(123) 123-456" type="text">
-              <label>Email</label>
-              <input value="tom@example.com" type="text">
-              <label>Notes</label>
-              <textarea name="notes" id="notes" cols="30" rows="10">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</textarea>
-              <label><i class="fa fa-twitter"></i> Twitter</label>
-              <input placeholder="https://www.twitter.com/" type="text">
-              <label><i class="fa fa-facebook-square"></i> Facebook</label>
-              <input placeholder="https://www.facebook.com/" type="text">
-              <label><i class="fa fa-google-plus"></i> Google+</label>
-              <input placeholder="https://www.google.com/" type="text">
-            </div>
-            <button class="button margin-top-15">Save Changes</button>
+						<!-- Form -->
+						<form class="" action="{{route('user.profile')}}" method="post" enctype="multipart/form-data">
+							<!-- Avatar -->
+							<div class="edit-profile-photo">
+								<div class="text-center">
+									@if (Auth::user()->img != null)
+										<img src="{{asset(Auth::user()->img)}}">
+									@else
+										<img src="{{asset('assets/img/user.png')}}">
+									@endif
+								</div>
+								<div class="text-center">
+									<input type="file" name="img" class="button border">
+								</div>
+							</div>
+							<!-- Details -->
+							<div class="my-profile">
+								<label>Your Name</label>
+								<input type="hidden" value="{{Auth::user()->id_user}}" name="id">
+								<input placeholder="Name" type="text" value="{{Auth::user()->name}}" name="name">
+								<label>Email</label>
+								<input placeholder="email@example.com" type="text" value="{{Auth::user()->email}}" name="email">
+								<label><i class="fa fa-twitter"></i> Twitter</label>
+								@if (Auth::user()->twitter != null)
+									<input placeholder="https://www.twitter.com/" type="text" value="{{Auth::user()->twitter}}" name="twitter">
+								@else
+									<input placeholder="https://www.twitter.com/" type="text" name="twitter">
+								@endif
+								<label><i class="fa fa-facebook-square"></i> Facebook</label>
+								@if (Auth::user()->facebook != null)
+									<input placeholder="https://www.facebook.com/" type="text" value="{{Auth::user()->facebook}}" name="facebook">
+								@else
+									<input placeholder="https://www.facebook.com/" type="text" name="facebook">
+								@endif
+								<label><i class="fa fa-google-plus"></i> Google+</label>
+								@if (Auth::user()->google != null)
+									<input placeholder="https://www.google.com/" type="text" value="{{Auth::user()->google}}" name="google">
+								@else
+									<input placeholder="https://www.google.com/" type="text" name="google">
+								@endif
+							</div>
+							{{csrf_field()}}
+							<button type="submit" class="button margin-top-15">Save Changes</button>
+						</form>
           </div>
         </div>
       </div>
@@ -65,23 +64,31 @@
         <div class="dashboard-list-box margin-top-0">
           <h4 class="gray">Change Password</h4>
           <div class="dashboard-list-box-static">
-            <!-- Change Password -->
-            <div class="my-profile">
-              <label class="margin-top-0">Current Password</label>
-              <input type="password">
-              <label>New Password</label>
-              <input type="password">
-              <label>Confirm New Password</label>
-              <input type="password">
-              <button class="button margin-top-15">Change Password</button>
-            </div>
+						@if (count($errors)>0)
+							<div class="alert alert-danger">
+								@foreach ($errors->all() as $error)
+									<p>{{$error}}</p>
+								@endforeach
+							</div>
+						@endif
+						<!-- Form -->
+						<form class="" action="#" method="post">
+							<!-- Change Password -->
+							<div class="my-profile">
+								<input type="hidden" value="{{Auth::user()->id_user}}" name="id">
+								<label class="margin-top-0">Current Password</label>
+								<input type="password" name="password">
+								<label>New Password</label>
+								<input type="password" name="password1">
+								<label>Confirm New Password</label>
+								<input type="password" name="password2">
+								<button type="submit" class="button margin-top-15">Change Password</button>
+							</div>
+						</form>
           </div>
         </div>
       </div>
-      <!-- Copyrights -->
-      <div class="col-md-12">
-        <div class="copyrights">© 2017 Listeo. All Rights Reserved.</div>
-      </div>
+			@include('template.footer')
     </div>
   </div>
 @endsection
