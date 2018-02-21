@@ -11,6 +11,11 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-md-12">
+						@if(Session::has('failed'))
+							<div class="alert alert-danger">
+								{{Session::get('failed')}}
+							</div>
+						@endif
   					<h2>Find Nearby Attractions</h2>
   					<h4>Expolore top-rated attractions, activities and more</h4>
   					<div class="main-search-input">

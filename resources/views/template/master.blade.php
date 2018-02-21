@@ -12,17 +12,17 @@
 	<!-- JS Global-->
 	<script type="text/javascript" src="{{ URL::to('js/vue.js')}}"></script>
 	<script type="text/javascript" src="{{ URL::to('js/axios.js')}}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/jquery-2.2.0.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/jquery-ui.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/jpanelmenu.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/chosen.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/slick.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/rangeslider.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/magnific-popup.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/waypoints.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/counterup.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/tooltips.min.js') }}"></script>
-	<script defer type="text/javascript" src="{{ URL::to('assets/scripts/custom.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/jquery-2.2.0.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/jquery-ui.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/jpanelmenu.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/chosen.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/slick.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/rangeslider.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/magnific-popup.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/waypoints.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/counterup.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/tooltips.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('assets/scripts/custom.js') }}"></script>
   <!-- /JS Global-->
 	@yield('styles')
 </head>

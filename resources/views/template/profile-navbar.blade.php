@@ -93,8 +93,8 @@
 						<ul>
 							<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 							<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
-							<li><a href="dashboard-my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
-							<li><a href="index-2.html"><i class="sl sl-icon-power"></i> Logout</a></li>
+							<li><a href="{{route('user.profile')}}"><i class="sl sl-icon-user"></i> My Profile</a></li>
+							<li><a href="{{route('user.logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
 						</ul>
 					</div>
 					<a href="dashboard-add-listing.html" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>

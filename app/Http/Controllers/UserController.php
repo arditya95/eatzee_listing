@@ -7,27 +7,69 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\Filesystem;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use App\Mail\SendVerificationEmail;
 
 class UserController extends Controller
 {
-  public function postSignup(Request $request)
-  {
-    $this->validate($request,[
-      'name'      => 'required',
-      'username'  => 'required|unique:tb_user',
-      'email'     => 'email|required|unique:tb_user',
-      'password'  => 'required|min:4'
-    ]);
+  // public function postSignup(Request $request)
+  // {
+  //   $this->validate($request,[
+  //     'name'      => 'required',
+  //     'username'  => 'required|unique:tb_user',
+  //     'email'     => 'email|required|unique:tb_user',
+  //     'password'  => 'required|min:4'
+  //   ]);
+  //
+  //   $user = new User([
+  //     'name' => $request->input('name'),
+  //     'username' => $request->input('username'),
+  //     'email' => $request->input('email'),
+  //     'password' => bcrypt($request->input('password')),
+  //     'email_token' => base64_encode($request->input('email'))
+  //   ]);
+  //   $user->save();
+  //   Auth::login($user);
+  //   return redirect()->route('index');
+  // }
 
-    $user = new User([
-      'name' => $request->input('name'),
-      'username' => $request->input('username'),
-      'email' => $request->input('email'),
-      'password' => bcrypt($request->input('password'))
-    ]);
-    $user->save();
-    Auth::login($user);
-    return redirect()->route('index');
+  protected function validator(array $data)
+  {
+      return Validator::make($data, [
+          'name' => 'required|string|max:255',
+          'username' => 'required|string|max:255|unique:tb_user',
+          'email' => 'required|string|email|max:255|unique:tb_user',
+          'password' => 'required|string|min:6|confirmed',
+      ]);
+  }
+
+  protected function create(array $data)
+  {
+      return User::create([
+          'name' => $data['name'],
+          'username' => $data['username'],
+          'email' => $data['email'],
+          'password' => bcrypt($data['password']),
+          'email_token' => base64_encode($data['email'])
+      ]);
+  }
+
+  public function register(Request $request)
+  {
+    // $this->validator($request->all())->validate();
+    event(new Registered($user = $this->create($request->all())));
+    dispatch(new SendVerificationEmail($user));
+    return view('user.email.verification');
+  }
+
+  public function verify($token)
+  {
+    $user = User::where('email_token', $token)->first();
+    $user->verified = 1;
+    if($user->save()){
+      return view('user.email.emailconfirm', ['user'=>$user]);
+    }
   }
 
   public function postSignin(Request $request){
@@ -36,10 +78,10 @@ class UserController extends Controller
       'password' => 'required|min:4'
     ]);
 
-    if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+    if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password'), 'verified' => 1])) {
       return redirect()->route('index');
     }
-    return redirect()->back();
+    return redirect()->back()->with(['failed' => 'false']);
   }
 
   public function getProfile(){

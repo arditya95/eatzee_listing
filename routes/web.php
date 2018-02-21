@@ -21,12 +21,27 @@ Route::get('/index', [
     'as' => 'login'
 ]);
 
+Route::get('/resto', [
+    'uses' => 'RestoController@index',
+    'as' => 'resto.page'
+]);
+
+Route::get('/verifyemail/{token}', [
+    'uses' => 'Auth\RegisterController@verify',
+    'as' => 'user.verify'
+]);
+
 Route::group(['prefix' => 'user'], function() {
   Route::group(['middleware' => 'guest'], function(){
     Route::post('/signup', [
-        'uses' => 'UserController@postSignup',
+        'uses' => 'UserController@register',
         'as' => 'user.signup'
     ]);
+
+    // Route::post('/signup', [
+    //     'uses' => 'Auth\RegisterController@register',
+    //     'as' => 'user.signup'
+    // ]);
 
     Route::post('/signin', [
         'uses' => 'UserController@postSignin',
