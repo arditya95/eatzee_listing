@@ -13,7 +13,7 @@ class ForgotPasswordController extends Controller
   //Shows form to request password reset
   public function showLinkRequestForm()
   {
-    return view('user.passwords.email');
+    return view('user.email.email_reset');
   }
 
   //Password Broker for users Model

@@ -50,13 +50,13 @@
                 <p class="form-row form-row-wide">
                   <label for="username">Username:
                     <i class="im im-icon-Male"></i>
-                    <input type="text" class="input-text" name="username" id="username" value="" required/>
+                    <input type="text" class="input-text" name="username" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="password">Password:
                     <i class="im im-icon-Lock-2"></i>
-                    <input class="input-text" type="password" name="password" id="password" required/>
+                    <input class="input-text" type="password" name="password" required/>
                   </label>
                 </p>
                 <div class="form-row">
@@ -71,25 +71,25 @@
                 <p class="form-row form-row-wide">
                   <label for="name">Name:
                     <i class="im im-icon-Male"></i>
-                    <input type="text" class="input-text" name="name" id="name" value="" required/>
+                    <input type="text" class="input-text" name="name" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="username">Username:
                     <i class="im im-icon-Male"></i>
-                    <input type="text" class="input-text" name="username" id="username" value="" required/>
+                    <input type="text" class="input-text" name="username" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="email">Email Address:
                     <i class="im im-icon-Mail"></i>
-                    <input type="email" class="input-text" name="email" id="email" value="" required/>
+                    <input type="email" class="input-text" name="email" value="" required/>
                   </label>
                 </p>
                 <p class="form-row form-row-wide">
                   <label for="password">Password:
                     <i class="im im-icon-Lock-2"></i>
-                    <input class="input-text" type="password" name="password" id="password" required/>
+                    <input class="input-text" type="password" name="password" required/>
                   </label>
                 </p>
                 {{csrf_field()}}

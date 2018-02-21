@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
+            $table->tinyInteger('verified')->default(0);
+            $table->string('email_token')->nullable();
             $table->text('img')->nullable();
             $table->text('twitter')->nullable();
             $table->text('facebook')->nullable();

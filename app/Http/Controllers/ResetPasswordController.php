@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {
   //Seller redirect path
-  protected $redirectTo = redirect()->route('index');
+  protected $redirectTo = '/';
 
   //trait for handling reset Password
   use ResetsPasswords;
@@ -15,7 +18,7 @@ class ResetPasswordController extends Controller
   //Show form to user where they can reset password
   public function showResetForm(Request $request, $token = null)
   {
-    return view('user.passwords.reset')->with(
+    return view('user.email.reset')->with(
       ['token' => $token, 'email' => $request->email]
     );
   }
@@ -23,7 +26,7 @@ class ResetPasswordController extends Controller
   //returns Password broker of user
   public function broker()
   {
-    return Password::broker('user');
+    return Password::broker('users');
   }
 
   //returns authentication guard of user
