@@ -1,7 +1,7 @@
 @extends('template.master')
 
 @section('title')
-	EatZee Listing
+	EatZee Listing App
 @endsection
 
 @section('content')
