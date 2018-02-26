@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Jleon\LaravelPnotify\NotifyServiceProvider::class,
+        Chencha\Share\ShareServiceProvider::class,
 
     ],
 
@@ -227,6 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Notify' => Jleon\LaravelPnotify\Notify::class,
+        'Share' => Chencha\Share\ShareFacade::class,
 
     ],
 

@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title')</title>
   <!-- CSS Global-->
+	<link href="{{ URL::to('css/bootstrap.css') }}" id="colors" rel="stylesheet" type="text/css">
+	<link href="{{ URL::to('css/pnotify.custom.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ URL::to('assets/css/style4963.css?ver=1.1') }}" rel="stylesheet" type="text/css">
   <link href="{{ URL::to('assets/css/colors/main.css') }}" id="colors" rel="stylesheet" type="text/css">
 	<!-- /CSS Global-->
@@ -23,6 +25,7 @@
 	<script type="text/javascript" src="{{ URL::to('assets/scripts/counterup.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::to('assets/scripts/tooltips.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::to('assets/scripts/custom.js') }}"></script>
+
   <!-- /JS Global-->
 	@yield('styles')
 </head>
@@ -43,8 +46,19 @@
     <!-- /page content -->
   </div>
   <!-- /page container -->
+	{{-- footer --}}
+	@include('template.master-footer')
   <!-- JS Global-->
-
+	<script type="text/javascript" src="{{ URL::to('js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('js/pnotify.custom.min.js')}}"></script>
+	{{-- notifications --}}
+	@include('laravelPnotify::notify')
+	@if (Session::has('notifier.notice'))
+		<script>
+		{{Session::get('notifier.notice')}}
+		</script>
+	@endif
+	{{-- end notifications --}}
   <!-- JS Global-->
   @yield('scripts')
 </body>

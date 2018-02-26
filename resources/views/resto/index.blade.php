@@ -36,9 +36,9 @@
                 {{$response_resto->info[0]->address_in_map}}
               </a>
             </span>
-            <div class="star-rating" data-rating="5">
-              <div class="rating-counter"><a href="#listing-reviews">(31 reviews)</a></div>
-            </div>
+						<div class="star-rating" data-rating="5">
+							<div class="rating-counter"><a href="#listing-reviews">(31 reviews)</a></div>
+						</div>
           </div>
         </div>
         <div class="col-md-12">
@@ -47,7 +47,7 @@
             <ul class="tabs-nav">
               <li class="active"><a href="#overview"><i class="sl sl-icon-eye"></i> Overview</a></li>
               <li class=""><a href="#menus"><i class="sl sl-icon-notebook"></i> Menus</a></li>
-              <li class=""><a href="#feeds"><i class="sl sl-icon-feed"></i> Feeds & Promo</a></li>
+              <li class=""><a href="#feeds"><i class="sl sl-icon-feed"></i> Promo</a></li>
               <li class=""><a href="#photos"><i class="sl sl-icon-picture"></i> Photos (10)</a></li>
               <li class=""><a href="#review"><i class="sl sl-icon-speech"></i> Review</a></li>
             </ul>
@@ -59,7 +59,7 @@
 								{!!$response_resto->description!!}
 
                 <!-- Amenities -->
-                <h3 class="listing-desc-headline">More Information</h3>
+                <h3 class="listing-desc-headline">Resto Facilities</h3>
                 <ul class="listing-features checkboxes margin-top-0">
                   <li>Elevator in building</li>
                   <li>Friendly workspace</li>
@@ -123,18 +123,25 @@
                 <div class="show-more">
                   <div class="pricing-list-container">
                     <hr>
-										@foreach ($response_product as $product)
-											<div class="gallery-menu">
-												<a target="_blank" href="{{ asset($product->image) }}">
-													<img src="{{ asset($product->image) }}" alt="image" width="600" height="400">
-												</a>
-												<div class="desc">
-													<h5>{{$product->name}}</h5>
-													<p>Add a description of the image here</p>
+										@foreach (array_chunk($response_product, 3) as $productChunk)
+										<div class="row">
+											@foreach ($productChunk as $product)
+												<div class="col-md-4">
+													<div class="gallery-menu">
+														<a target="_blank" href="{{ asset($product->image) }}">
+															<img src="{{ 'https://eatzee-resto.herokuapp.com' . $product->image }}" alt="image" width="600" height="400">
+														</a>
+														<div class="desc">
+															<h5>{{$product->name}}</h5>
+															{{$product->description}}
+														</div>
+														<div class="price">{{$product->price}}</div>
+													</div>
 												</div>
-												<div class="price">{{$product->price}}</div>
-											</div>
+											@endforeach
+										</div>
 										@endforeach
+
                   </div>
                 </div>
                 <a href="#" class="show-more-button" data-more-title="Show More" data-less-title="Show Less"><i class="fa fa-angle-down"></i></a>
@@ -193,49 +200,26 @@
                 <!-- Pagination / End -->
               </div>
               <div class="tab-content" id="photos" style="display: none;">
-                <h3 class="listing-desc-headline margin-top-20 margin-bottom-20">Gallery <span>(12)</span></h3>
+                <h3 class="listing-desc-headline margin-top-20 margin-bottom-20">Gallery</h3>
                 <div class="review-images mfp-gallery-container">
                   <a href="images/review-image-02.jpg" class="mfp-gallery"><img src="images/review-image-02.jpg" alt=""></a>
                   <a href="images/review-image-03.jpg" class="mfp-gallery"><img src="images/review-image-03.jpg" alt=""></a>
                 </div>
               </div>
               <div class="tab-content" id="review" style="display: none;">
-                <h3 class="listing-desc-headline margin-top-30 margin-bottom-20">Reviews <span>(12)</span></h3>
+                <h3 class="listing-desc-headline margin-top-30 margin-bottom-20">Reviews</h3>
                 <div class="clearfix"></div>
                 <!-- Reviews -->
-                <section class="comments listing-reviews">
-                  <ul>
-										<li>
-											<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" /> </div>
-											<div class="comment-content">
-												<div class="arrow-comment"></div>
-												<div class="comment-by">John Doe<span class="date">May 2017</span>
-													<div class="star-rating" data-rating="4"></div>
-												</div>
-												<p>Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris.</p>
-												<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Helpful Review <span>2</span></a>
-											</div>
-										</li>
-									</ul>
-								</section>
-								<!-- Pagination -->
+								<div id="disqus_thread"></div>
+								<script>
+									(function() {var d = document, s = d.createElement('script');
+									s.src = 'https://bakso.disqus.com/embed.js';
+									s.setAttribute('data-timestamp', +new Date());
+									(d.head || d.body).appendChild(s);})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 								<div class="clearfix"></div>
-								<div class="row">
-									<div class="col-md-12">
-										<!-- Pagination -->
-										<div class="pagination-container margin-top-30">
-											<nav class="pagination">
-												<ul>
-													<li><a href="#" class="current-page">1</a></li>
-													<li><a href="#">2</a></li>
-													<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-												</ul>
-											</nav>
-										</div>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-								<!-- Pagination / End -->
+								<!-- / End -->
 							</div>
 							<br>
 						</div>
@@ -318,9 +302,9 @@
 				<!-- Social account / End-->
 				<!-- Share Buttons -->
 				<ul class="share-buttons margin-top-40 margin-bottom-0">
-					<li><a class="fb-share" href="#"><i class="fa fa-facebook"></i> Share</a></li>
-					<li><a class="twitter-share" href="#"><i class="fa fa-twitter"></i> Tweet</a></li>
-					<li><a class="gplus-share" href="#"><i class="fa fa-google-plus"></i> Share</a></li>
+					<li><a class="fb-share" onClick="window.open('{{route('facebook', ['resto' => $response_resto->resto_name])}}', width=600, height=300);" ><i class="fa fa-facebook"></i> Share</a></li>
+					<li><a class="twitter-share" onClick="window.open('{{route('twitter', ['resto' => $response_resto->resto_name])}}', width=600, height=300);"><i class="fa fa-twitter"></i> Tweet</a></li>
+					<li><a class="gplus-share" onClick="window.open('{{route('gplus', ['resto' => $response_resto->resto_name])}}', width=600, height=300);"><i class="fa fa-google-plus"></i> Share</a></li>
 					<!-- <li><a class="pinterest-share" href="#"><i class="fa fa-pinterest-p"></i> Pin</a></li> -->
 				</ul>
 				<div class="clearfix"></div>
@@ -333,6 +317,7 @@
 @endsection
 
 @section('scripts')
+	<script id="dsq-count-scr" src="//bakso.disqus.com/count.js" async></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
 
   <script type="text/javascript" src="{{ URL::to('assets/scripts/infobox.min.js') }}"></script>
@@ -346,14 +331,14 @@
   <script src="{{ URL::to('assets/scripts/timedropper.js') }}"></script>
   <link rel="stylesheet" type="text/css" href="{{ URL::to('assets/css/plugins/timedropper.css') }}">
   <script>
-  this.$('#booking-time').timeDropper({
-  	setCurrentTime: false,
-  	meridians: true,
-  	primaryColor: "#f91942",
-  	borderColor: "#f91942",
-  	minutesInterval: '15'
-  });
+	this.$('#booking-time').timeDropper({
+		setCurrentTime: false,
+		meridians: true,
+		primaryColor: "#f91942",
+		borderColor: "#f91942",
+		minutesInterval: '15'
+	});
 
-  var $clocks = $('.td-input');
+	var $clocks = $('.td-input');
   </script>
 @endsection

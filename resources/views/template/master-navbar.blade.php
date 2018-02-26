@@ -16,7 +16,7 @@
           <!-- User Menu -->
           @if (Auth::check())
             <div class="user-menu">
-              <div class="user-name"><span><img src="#" alt=""></span>{{Auth::user()->name}}</div>
+              <div class="user-name"><span><img src="{{asset(Auth::user()->img)}}" alt=""></span>{{Auth::user()->name}}</div>
               <ul>
                 <li><a href="#"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
                 <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>

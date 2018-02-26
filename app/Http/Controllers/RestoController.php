@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\User;
 
 class RestoController extends Controller
 {
@@ -17,6 +18,8 @@ class RestoController extends Controller
 
     $api_product = $client->get('https://eatzee-resto.herokuapp.com/api/products')->getBody();
     $response_product = json_decode($api_product)->products;
+
+    // $user = User::all();
 
     // return $response_product;
 

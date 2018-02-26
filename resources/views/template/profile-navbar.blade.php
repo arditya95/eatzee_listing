@@ -6,7 +6,6 @@
 			<div class="left-side">
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index-2.html"><img src="images/logo.png" alt=""></a>
 					<a href="{{route('index')}}" class="dashboard-logo"><img src="{{asset('assets/img/logo-footer.png')}}" alt=""></a>
 				</div>
 				<!-- Mobile Navigation -->
@@ -89,7 +88,7 @@
 				<div class="header-widget">
 					<!-- User Menu -->
 					<div class="user-menu">
-						<div class="user-name"><span><img src="images/dashboard-avatar.jpg" alt=""></span>{{Auth::user()->name}}</div>
+						<div class="user-name"><span><img src="{{asset(Auth::user()->img)}}" alt=""></span>{{Auth::user()->name}}</div>
 						<ul>
 							<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 							<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
