@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 //Notification for User
 use App\Notifications\UserResetPasswordNotification;
 
@@ -11,7 +13,7 @@ class User extends Authenticatable
 {
     protected $primaryKey = 'id_user';
     protected $table      = 'tb_user';
-
+    use CanFollow, CanBeFollowed;
     use Notifiable;
 
     /**

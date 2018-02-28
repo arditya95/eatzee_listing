@@ -59,15 +59,16 @@
 								{!!$response_resto->description!!}
 
                 <!-- Amenities -->
-                <h3 class="listing-desc-headline">Resto Facilities</h3>
-                <ul class="listing-features checkboxes margin-top-0">
-                  <li>Elevator in building</li>
-                  <li>Friendly workspace</li>
-                  <li>Instant Book</li>
-                  <li>Wireless Internet</li>
-                  <li>Free parking on premises</li>
-                  <li>Free parking on street</li>
-                </ul>
+								{{-- @if ($response_resto->resto_facility != null)
+									<h3 class="listing-desc-headline">Resto Facilities</h3>
+									<ul class="listing-features checkboxes margin-top-0">
+										@foreach ($response_resto->resto_facility as $facility)
+											@if ($facility != null)
+												<li>{{$facility->facilities}}</li>
+											@endif
+										@endforeach
+									</ul>
+								@endif --}}
                 <hr>
                 <mark class=""><b>Discover Tag:</b>
 									{{-- @foreach ($response_resto as $discover) --}}

@@ -179,6 +179,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Jleon\LaravelPnotify\NotifyServiceProvider::class,
         Chencha\Share\ShareServiceProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
 
     ],
 

@@ -29,12 +29,6 @@ Route::get('/resto', [
     'as' => 'resto.page'
 ]);
 
-//verify registration
-Route::get('/verifyemail/{token}', [
-    'uses' => 'UserController@verify',
-    'as' => 'user.verify'
-]);
-
 //share
 Route::group(['prefix' => 'share'], function() {
   Route::get('/gplus/{resto}', function()
@@ -58,6 +52,12 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('/', function () {
       return redirect('/');
   });
+
+  //verify registration
+  Route::get('/verifyemail/{token}', [
+      'uses' => 'UserController@verify',
+      'as' => 'user.verify'
+  ]);
 
   //FOR GUEST
   Route::group(['middleware' => 'guest'], function(){
