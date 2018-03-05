@@ -21,7 +21,7 @@ class RestoController extends Controller
 
     // $user = User::all();
 
-    // return $response_product;
+    // return $response_resto->resto_name;
 
     return view('resto.index', compact('response_resto', 'response_feed' , 'response_product'));
   }

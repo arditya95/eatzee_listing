@@ -230,8 +230,13 @@
 			<!-- Sidebar-->
 			<div class="col-lg-3 col-md-3 margin-top-75 sticky">
 				<!-- Share / Like -->
-				<div class="listing-share margin-top-80 margin-bottom-30 no-border">
-					<button class="like-button"><span class="like-icon"></span> Bookmark This Listing</button>
+				<div id="bookmark" class="listing-share margin-top-80 margin-bottom-30 no-border">
+					<div v-if="bookmark == 'true' || bookmark == 1">
+						<button v-on:click="bookmarkClik" class="like-button liked"><span class="like-icon liked"></span> Bookmark This Listing</button>
+					</div>
+					<div v-else>
+						<button v-on:click="bookmarkClik" class="like-button"><span class="like-icon"></span> Bookmark This Listing</button>
+					</div>
 					<a href="#" class="button medium border"><i class="sl sl-icon-pin"></i>Check in</a>
 					<span>159 people check in here</span>
 					<hr>
@@ -342,4 +347,30 @@
 
 	var $clocks = $('.td-input');
   </script>
+
+<script type="text/javascript">
+	var vue = new Vue({
+		el: '#bookmark',
+		data:{
+			bookmarkStatus: 1
+		},
+		methods:{
+			bookmarkClik: function() {
+				var self = this;
+				axios({
+					url: '{{ action('FollowController@FollowResto') }}',
+					method: 'POST',
+					dataType: "json",
+					data: {_token : "{{ csrf_token() }}", id_resto : {{$response_resto->id_resto}}, id_user : {{Auth::user()->id_user}}, status : 1},
+					error: function (error) {
+						console.log(error);
+					}
+				}).then( function(response){
+					// console.log(response);
+					self.bookmarkStatus = response;
+				});
+			}
+		}
+	});
+</script>
 @endsection
