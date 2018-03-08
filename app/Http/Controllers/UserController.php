@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use App\Mail\SendVerificationEmail;
+use Jleon\LaravelPnotify\Notify;
 
 class UserController extends Controller
 {
@@ -79,9 +80,13 @@ class UserController extends Controller
     ]);
 
     if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password'), 'verified' => 1])) {
-      return redirect()->route('index');
+      $notif = Notify::success('Login Successfull', 'Success');
+      return redirect()->back();
     }
-    return redirect()->back()->with(['failed' => 'false']);
+    $notif = Notify::danger('Username or Password Not Match', 'Error');
+    // dd ($notif);
+    return redirect()->back();
+    // return redirect()->back()->with(['message' => 'Gagal Masuk!']);
   }
 
   public function getProfile(){
@@ -89,6 +94,7 @@ class UserController extends Controller
   }
 
   public function postProfile(Request $request){
+    // return $request;
     $user = User::find($request->id);
 
     $this->validate($request,[

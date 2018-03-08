@@ -11,13 +11,8 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-md-12">
-						@if(Session::has('failed'))
-							<div class="alert alert-danger">
-								{{Session::get('failed')}}
-							</div>
-						@endif
-  					<h2>Find Nearby Attractions</h2>
-  					<h4>Expolore top-rated attractions, activities and more</h4>
+  					<h2>Find Your Taste</h2>
+  					<h4>Find, Explore and Eat, It's Simple and easy!</h4>
   					<div class="main-search-input">
   						<div class="main-search-input-item">
   							<input type="text" placeholder="What are you looking for?" value=""/>
@@ -36,7 +31,8 @@
   								<option>Events</option>
   							</select>
   						</div>
-  						<button class="button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
+							<a class="button" href="{{route('resto.page')}}"> Search </a>
+  						{{-- <button class="button" href="">Search</button> --}}
   					</div>
   				</div>
   			</div>
@@ -381,62 +377,4 @@
   	</div>
   </section>
   <!-- Recent Blog Posts / End -->
-
-  <!-- Footer -->
-  <div id="footer" class="sticky-footer">
-  	<!-- Main -->
-  	<div class="container">
-  		<div class="row">
-  			<div class="col-md-5 col-sm-6">
-  				<img class="footer-logo" src="{{ asset('assets/img/logo.png')}}" alt="">
-  				<br><br>
-  				<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-  			</div>
-  			<div class="col-md-4 col-sm-6 ">
-  				<h4>Helpful Links</h4>
-  				<ul class="footer-links">
-  					<li><a href="#">Login</a></li>
-  					<li><a href="#">Sign Up</a></li>
-  					<li><a href="#">My Account</a></li>
-  					<li><a href="#">Add Listing</a></li>
-  					<li><a href="#">Pricing</a></li>
-  					<li><a href="#">Privacy Policy</a></li>
-  				</ul>
-  				<ul class="footer-links">
-  					<li><a href="#">FAQ</a></li>
-  					<li><a href="#">Blog</a></li>
-  					<li><a href="#">Our Partners</a></li>
-  					<li><a href="#">How It Works</a></li>
-  					<li><a href="#">Contact</a></li>
-  				</ul>
-  				<div class="clearfix"></div>
-  			</div>
-  			<div class="col-md-3  col-sm-12">
-  				<h4>Contact Us</h4>
-  				<div class="text-widget">
-  					<span>12345 Little Lonsdale St, Melbourne</span> <br>
-  					Phone: <span>(123) 123-456 </span><br>
-  					E-Mail:<span> <a href="#"><span class="__cf_email__" data-cfemail="701f1616191315301508111d001c155e131f1d">[email&#160;protected]</span></a> </span><br>
-  				</div>
-  				<ul class="social-icons margin-top-20">
-  					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-  					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-  					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-  					<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-  				</ul>
-  			</div>
-  		</div>
-  		<!-- Copyright -->
-  		<div class="row">
-  			<div class="col-md-12">
-  				<div class="copyrights">© 2017 Listeo. All Rights Reserved.</div>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  <!-- Footer / End -->
-  <!-- Back To Top Button -->
-  <div id="backtotop"><a href="#"></a></div>
-  </div>
-  <!-- Wrapper / End -->
 @endsection

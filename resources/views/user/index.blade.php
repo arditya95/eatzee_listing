@@ -64,13 +64,13 @@
         <div class="dashboard-list-box margin-top-0">
           <h4 class="gray">Change Password</h4>
           <div class="dashboard-list-box-static">
-						@if (count($errors)>0)
+						{{-- @if (count($errors)>0)
 							<div class="alert alert-danger">
 								@foreach ($errors->all() as $error)
 									<p>{{$error}}</p>
 								@endforeach
 							</div>
-						@endif
+						@endif --}}
 						<!-- Form -->
 						<form class="" action="#" method="post">
 							<!-- Change Password -->

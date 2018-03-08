@@ -23,7 +23,7 @@
     </ul>
     <ul data-submenu-title="Account">
       <li class="active"><a href="dashboard-my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
-      <li><a href="index-2.html"><i class="sl sl-icon-power"></i> Logout</a></li>
+      <li><a href="{{route('user.logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
     </ul>
   </div>
 </div>
