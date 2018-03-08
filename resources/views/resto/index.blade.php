@@ -21,12 +21,19 @@
             <h2>{{$response_resto->resto_name}}</h2>
 						<br>
 						<div class="row">
-							<span class="listing-tag" > {{$response_resto->category[0]->category_resto}} </span>
+							@if ($response_resto->category != null)
+								<span class="listing-tag" > {{$response_resto->category[0]->category_resto}} </span>
+							@endif
+
 							@if ($response_resto->status_delivery ==  true && $response_resto->status_delivery_only == false)
 								<a href="#"><span class="listing-online"><i class="sl sl-icon-check"></i> Online Order</span></a>
-							@elseif ($response_resto->status_reservation ==  true && $response_resto->status_delivery_only == false)
+							@endif
+
+							@if ($response_resto->status_reservation ==  true && $response_resto->status_delivery_only == false)
 								<a href="#booking"><span class="listing-online"><i class="sl sl-icon-check"></i> Open Table</span></a>
-							@elseif ($response_resto->status_delivery_only == true)
+							@endif
+
+							@if ($response_resto->status_delivery_only == true)
 								<span class="listing-catering"><i class="sl sl-icon-check"></i> Delivery Only</span>
 							@endif
 						</div>
@@ -230,46 +237,52 @@
 			<!-- Sidebar-->
 			<div class="col-lg-3 col-md-3 margin-top-75 sticky">
 				<!-- Share / Like -->
-				<div id="bookmark" class="listing-share margin-top-80 margin-bottom-30 no-border">
-					<div v-if="bookmark == 'true' || bookmark == 1">
-						<button v-on:click="bookmarkClik" class="like-button liked"><span class="like-icon liked"></span> Bookmark This Listing</button>
+				@if (Auth::check())
+					<div id="bookmark" class="listing-share margin-top-80 margin-bottom-30 no-border">
+						<div v-if="bookmark == 'true' || bookmark == 1">
+							<button v-on:click="bookmarkClik" class="like-button liked"><span class="like-icon liked"></span> Bookmark This Listing</button>
+						</div>
+						<div v-else>
+							<button v-on:click="bookmarkClik" class="like-button"><span class="like-icon"></span> Bookmark This Listing</button>
+						</div>
+						<a href="#" class="button medium border"><i class="sl sl-icon-pin"></i>Check in</a>
+						<span>159 people check in here</span>
+						<hr>
+						<div class="clearfix"></div>
 					</div>
-					<div v-else>
-						<button v-on:click="bookmarkClik" class="like-button"><span class="like-icon"></span> Bookmark This Listing</button>
-					</div>
-					<a href="#" class="button medium border"><i class="sl sl-icon-pin"></i>Check in</a>
-					<span>159 people check in here</span>
-					<hr>
-					<div class="clearfix"></div>
-				</div>
+				@endif
 				<!-- Book Now -->
-				<div class="boxed-widget" id="booking">
-					<h3><i class="fa fa-calendar-check-o "></i> Book a Table</h3>
-					<div class="row with-forms  margin-top-0">
-						<div class="col-lg-6 col-md-12">
-							<input type="text" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020">
+				@if ($response_resto->status_reservation ==  true && $response_resto->status_delivery_only == false)
+					<div class="boxed-widget" id="booking">
+						<h3><i class="fa fa-calendar-check-o "></i> Book a Table</h3>
+						<div class="row with-forms  margin-top-0">
+							<div class="col-lg-6 col-md-12">
+								<input type="text" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020">
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<input type="text" id="booking-time" value="9:00 am">
+							</div>
 						</div>
-						<div class="col-lg-6 col-md-12">
-							<input type="text" id="booking-time" value="9:00 am">
-						</div>
+						<button class="progress-button button fullwidth margin-top-5"><span>Open Table</span></button>
 					</div>
-					<button class="progress-button button fullwidth margin-top-5"><span>Open Table</span></button>
-				</div>
+				@endif
 				<!-- Book Now / End -->
 				<!-- Opening Hours -->
-				<div class="boxed-widget opening-hours margin-top-35">
-					<div class="listing-badge now-open">Now Open</div>
-					<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
-					<ul>
-						@foreach ($response_resto->open as $time)
-							@if ($time->status == false)
-								<li>{{$time->day}} <span>close</span></li>
-							@else
-								<li>{{$time->day}} <span>{{date('H:i', strtotime($time->open))}} - {{date('H:i', strtotime($time->close))}}</span></li>
-							@endif
-						@endforeach
-					</ul>
-				</div>
+				@if ($response_resto->open != null)
+					<div class="boxed-widget opening-hours margin-top-35">
+						<div class="listing-badge now-open">Now Open</div>
+						<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
+						<ul>
+							@foreach ($response_resto->open as $time)
+								@if ($time->status == false)
+									<li>{{$time->day}} <span>close</span></li>
+								@else
+									<li>{{$time->day}} <span>{{date('H:i', strtotime($time->open))}} - {{date('H:i', strtotime($time->close))}}</span></li>
+								@endif
+							@endforeach
+						</ul>
+					</div>
+				@endif
 				<!-- Opening Hours / End -->
 				<!-- Contact -->
 				<div class="boxed-widget margin-top-35">
@@ -348,7 +361,7 @@
 	var $clocks = $('.td-input');
   </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 	var vue = new Vue({
 		el: '#bookmark',
 		data:{
@@ -372,5 +385,5 @@
 			}
 		}
 	});
-</script>
+</script> --}}
 @endsection

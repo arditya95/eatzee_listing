@@ -31,7 +31,8 @@
   								<option>Events</option>
   							</select>
   						</div>
-  						<button class="button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
+							<a class="button" href="{{route('resto.page')}}"> Search </a>
+  						{{-- <button class="button" href="">Search</button> --}}
   					</div>
   				</div>
   			</div>
