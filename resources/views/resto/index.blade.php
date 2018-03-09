@@ -136,9 +136,15 @@
 											@foreach ($productChunk as $product)
 												<div class="col-md-4">
 													<div class="gallery-menu">
-														<a target="_blank" href="{{ asset($product->image) }}">
-															<img src="{{ 'https://eatzee-resto.herokuapp.com' . $product->image }}" alt="image" width="600" height="400">
-														</a>
+														@if ($product->image != null)
+															<a target="_blank" href="{{ asset($product->image) }}">
+																<img src="{{ 'https://eatzee-resto.herokuapp.com' . $product->image }}" alt="image" width="600" height="400">
+															</a>
+														@else
+															<a target="_blank" href="{{ asset('icon/no_image.png') }}">
+																<img src="{{ 'https://eatzee-resto.herokuapp.com' . 'icon/no_image.png' }}" alt="image" width="600" height="400">
+															</a>
+														@endif
 														<div class="desc">
 															<h5>{{$product->name}}</h5>
 															{{$product->description}}
@@ -256,10 +262,12 @@
 					<div class="boxed-widget" id="booking">
 						<h3><i class="fa fa-calendar-check-o "></i> Book a Table</h3>
 						<div class="row with-forms  margin-top-0">
-							<div class="col-lg-6 col-md-12">
-								<input type="text" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020">
+							<div class="col-md-12">
+								<input type="text" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
 							</div>
-							<div class="col-lg-6 col-md-12">
+						</div>
+						<div class="row with-forms  margin-top-0">
+							<div class="col-md-12">
 								<input type="text" id="booking-time" value="9:00 am">
 							</div>
 						</div>
@@ -275,7 +283,7 @@
 						<ul>
 							@foreach ($response_resto->open as $time)
 								@if ($time->status == false)
-									<li>{{$time->day}} <span>close</span></li>
+									<li>{{$time->day}} <span>Close</span></li>
 								@else
 									<li>{{$time->day}} <span>{{date('H:i', strtotime($time->open))}} - {{date('H:i', strtotime($time->close))}}</span></li>
 								@endif
@@ -290,7 +298,7 @@
 					<ul class="listing-details-sidebar">
 						<li><i class="sl sl-icon-phone"></i> {{$response_resto->info[0]->contact_us}}</li>
 						<li><i class="sl sl-icon-globe"></i> <a href="#">http://example.com</a></li>
-						<li><i class="fa fa-envelope-o"></i> <a href="#"><span class="__cf_email__" data-cfemail="9bf2f5fdf4dbfee3faf6ebf7feb5f8f4f6">[email&#160;protected]</span></a></li>
+						<li><i class="fa fa-envelope-o"></i> <a href="#"><span class="__cf_email__" data-cfemail="9bf2f5fdf4dbfee3faf6ebf7feb5f8f4f6">{{$response_resto->info[0]->email}}</span></a></li>
 					</ul>
 					<!-- Reply to review popup -->
 					<div id="small-dialog" class="zoom-anim-dialog mfp-hide">

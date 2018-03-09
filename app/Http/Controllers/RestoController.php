@@ -16,8 +16,11 @@ class RestoController extends Controller
     $api_feed = $client->get('https://eatzee-resto.herokuapp.com/api/feed')->getBody();
     $response_feed = json_decode($api_feed)->feeds;
 
-    $api_product = $client->get('https://eatzee-resto.herokuapp.com/api/products')->getBody();
-    $response_product = json_decode($api_product)->products;
+    // $api_product = $client->get('https://eatzee-resto.herokuapp.com/api/products')->getBody();
+    // $response_product = json_decode($api_product)->products;
+
+    $api_product = $client->get('https://eatzee-resto.herokuapp.com/api/listing/product')->getBody();
+    $response_product = json_decode($api_product)->productListing;
 
     // $user = User::all();
 
