@@ -142,7 +142,9 @@
 															</a>
 														@else
 															<a target="_blank" href="{{ asset('icon/no_image.png') }}">
-																<img src="{{ 'https://eatzee-resto.herokuapp.com' . 'icon/no_image.png' }}" alt="image" width="600" height="400">
+																<img src="{{ asset('icon/no_image.png') }}" alt="image" width="600" height="400">
+
+																{{-- <img src="{{ 'https://eatzee-resto.herokuapp.com' . 'icon/no_image.png' }}" alt="image" width="600" height="400"> --}}
 															</a>
 														@endif
 														<div class="desc">
@@ -155,7 +157,6 @@
 											@endforeach
 										</div>
 										@endforeach
-
                   </div>
                 </div>
                 <a href="#" class="show-more-button" data-more-title="Show More" data-less-title="Show Less"><i class="fa fa-angle-down"></i></a>
