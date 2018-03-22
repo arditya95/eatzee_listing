@@ -30,7 +30,7 @@
 							@endif
 
 							@if ($response_resto->status_reservation ==  true && $response_resto->status_delivery_only == false)
-								<a href="#booking"><span class="listing-online"><i class="sl sl-icon-check"></i> Open Table</span></a>
+								<a href="#"><span class="listing-online"><i class="sl sl-icon-check"></i> Open Table</span></a>
 							@endif
 
 							@if ($response_resto->status_delivery_only == true)
@@ -262,7 +262,7 @@
 				@if ($response_resto->status_reservation ==  true && $response_resto->status_delivery_only == false)
 					<div class="boxed-widget" id="booking">
 						<h3><i class="fa fa-calendar-check-o "></i> Book a Table</h3>
-						<div class="row with-forms  margin-top-0">
+						{{-- <div class="row with-forms  margin-top-0">
 							<div class="col-md-12">
 								<input type="text" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
 							</div>
@@ -271,9 +271,92 @@
 							<div class="col-md-12">
 								<input type="text" id="booking-time" value="9:00 am">
 							</div>
-						</div>
-						<button class="progress-button button fullwidth margin-top-5"><span>Open Table</span></button>
+						</div> --}}
+						<button href="#booking-dialog" class="progress-button button fullwidth margin-top-5 sign-in popup-with-zoom-anim"><span>Open Table</span></button>
 					</div>
+
+					<!-- Modal Reservation -->
+					<div id="booking-dialog" class="zoom-anim-dialog mfp-hide">
+						<div class="small-dialog-header">
+							<h3>Reservation</h3>
+						</div>
+						<div class="sign-in-form style-1">
+							<div class="tabs-container alt">
+								<form method="post" action="https://eatzee-resto.herokuapp.com/api/reservation">
+
+									<div class="row">
+										<div class="col-md-12">
+											<label for="customer_name">Name:
+												<i class="im im-icon-Male"></i>
+												<input type="hidden" class="input-text" name="admin_name" value="online"/>
+												<input type="text" class="input-text" name="customer_name" value="" required/>
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<label for="telp">Phone:
+												<i class="im im-icon-Old-Telephone"></i>
+												<input type="text" class="input-text" name="telp" value="" required/>
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<label for="email">Email:
+												<i class="im im-icon-Email"></i>
+												<input type="email" class="input-text" name="email" value="" required/>
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label for="date">Date:
+												<i class="im im-icon-Timer"></i>
+												<input type="text" id="booking-date" name="date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
+											</label>
+										</div>
+										<div class="col-md-6">
+											<label for="time">Time:
+												<i class="im im-icon-Timer"></i>
+												<input type="text" id="booking-time" name="time" value="9:00 am">
+											</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label for="pax">Pax:
+												<i class="im im-icon-MaleFemale"></i>
+												<input min="1" type="number" class="input-text" name="pax" value="" required/>
+											</label>
+										</div>
+										{{-- <div class="col-md-6">
+											<label for="datetime_reservation">Date:
+												<i class="im im-icon-Timer"></i>
+												<input type="text" class="input-text" name="datetime_reservation" value="" required/>
+											</label>
+										</div> --}}
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<label for="note">Note:
+												{{-- <i class="im im-icon-Notepad"></i> --}}
+												<textarea name="note" rows="4" cols="80" class="input-text"></textarea>
+												{{-- <input type="text" class="input-text" name="note"/> --}}
+											</label>
+										</div>
+									</div>
+
+									<div class="form-row">
+										{{csrf_field()}}
+										<input type="submit" class="button border margin-top-5"/>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- Modal Reservation -->
+
 				@endif
 				<!-- Book Now / End -->
 				<!-- Opening Hours -->
@@ -315,18 +398,32 @@
 				</div>
 				<!-- Contact / End-->
 				<!-- Social Account -->
-				<div class="boxed-widget margin-top-35">
-					<h3><i class="sl sl-icon-link"></i> Connect with us</h3>
-					<ul class="social-icons rounded">
-						<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-						<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-						<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-						<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-						<li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
-						<li><a class="youtube" href="#"><i class="icon-youtube"></i></a></li>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
+				@if ($response_resto->info[0] != null)
+					<div class="boxed-widget margin-top-35">
+						<h3><i class="sl sl-icon-link"></i> Connect with us</h3>
+						<ul class="social-icons rounded">
+							@if ($response_resto->info[0]->twitter != null)
+								<li><a target="_blank" class="twitter" href="{{$response_resto->info[0]->twitter}}"><i class="icon-twitter"></i></a></li>
+							@endif
+							@if ($response_resto->info[0]->facebook != null)
+								<li><a target="_blank" class="facebook" href="{{$response_resto->info[0]->facebook}}"><i class="icon-facebook"></i></a></li>
+							@endif
+							@if ($response_resto->info[0]->linkedin != null)
+								<li><a target="_blank" class="linkedin" href="{{$response_resto->info[0]->linkedin}}"><i class="icon-linkedin"></i></a></li>
+							@endif
+							@if ($response_resto->info[0]->google != null)
+								<li><a target="_blank" class="gplus" href="{{$response_resto->info[0]->google}}"><i class="icon-gplus"></i></a></li>
+							@endif
+							@if ($response_resto->info[0]->instagram != null)
+								<li><a target="_blank" class="instagram" href="{{$response_resto->info[0]->instagram}}"><i class="icon-instagram"></i></a></li>
+							@endif
+							@if ($response_resto->info[0]->youtube != null)
+								<li><a target="_blank" class="youtube" href="{{$response_resto->info[0]->youtube}}"><i class="icon-youtube"></i></a></li>
+							@endif
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				@endif
 				<!-- Social account / End-->
 				<!-- Share Buttons -->
 				<ul class="share-buttons margin-top-40 margin-bottom-0">

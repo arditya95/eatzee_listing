@@ -28,6 +28,4 @@ class RestoController extends Controller
 
     return view('resto.index', compact('response_resto', 'response_feed' , 'response_product'));
   }
-
-
 }
