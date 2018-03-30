@@ -7,11 +7,10 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EmailVerification extends Mailable
+class EmailReservation extends Mailable
 {
-    protected $user;
-    use Queueable, SerializesModels;
-
+  protected $user;
+  use Queueable, SerializesModels;
     /**
      * Create a new message instance.
      *
@@ -30,8 +29,6 @@ class EmailVerification extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->view('user.email.verficationemail')->with([
-          'email_token' => $this->user->email_token,
-        ]);
+        return $this->view('email.reservation.booking');
     }
 }

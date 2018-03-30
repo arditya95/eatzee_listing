@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use App\Mail\SendVerificationEmail;
+use App\Mail\SendReservationEmail;
 use Jleon\LaravelPnotify\Notify;
 
 class UserController extends Controller

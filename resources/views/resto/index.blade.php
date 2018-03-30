@@ -282,14 +282,15 @@
 						</div>
 						<div class="sign-in-form style-1">
 							<div class="tabs-container alt">
-								<form method="post" action="https://eatzee-resto.herokuapp.com/api/reservation">
+								{{-- <form method="post" action="https://eatzee-resto.herokuapp.com/api/reservation"> --}}
+								<form method="post">
 
 									<div class="row">
 										<div class="col-md-12">
 											<label for="customer_name">Name:
 												<i class="im im-icon-Male"></i>
-												<input type="hidden" class="input-text" name="admin_name" value="online"/>
-												<input type="text" class="input-text" name="customer_name" value="" required/>
+												<input type="hidden" class="input-text" name="admin_name" value="online" v-model="admin_name"/>
+												<input type="text" class="input-text" name="customer_name" value="" v-model="customer_name" required/>
 											</label>
 										</div>
 									</div>
@@ -297,7 +298,7 @@
 										<div class="col-md-12">
 											<label for="telp">Phone:
 												<i class="im im-icon-Old-Telephone"></i>
-												<input type="text" class="input-text" name="telp" value="" required/>
+												<input type="text" class="input-text" name="telp" value="" v-model="telp" required/>
 											</label>
 										</div>
 									</div>
@@ -305,7 +306,7 @@
 										<div class="col-md-12">
 											<label for="email">Email:
 												<i class="im im-icon-Email"></i>
-												<input type="email" class="input-text" name="email" value="" required/>
+												<input type="email" class="input-text" name="email" value="" v-model="email" required/>
 											</label>
 										</div>
 									</div>
@@ -313,13 +314,13 @@
 										<div class="col-md-6">
 											<label for="date">Date:
 												<i class="im im-icon-Timer"></i>
-												<input type="text" id="booking-date" name="date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
+												<input type="text" id="booking-date" name="date" v-model="date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
 											</label>
 										</div>
 										<div class="col-md-6">
 											<label for="time">Time:
 												<i class="im im-icon-Timer"></i>
-												<input type="text" id="booking-time" name="time" value="9:00 am">
+												<input type="text" id="booking-time" name="time" v-model="time" value="9:00 am">
 											</label>
 										</div>
 									</div>
@@ -327,7 +328,7 @@
 										<div class="col-md-6">
 											<label for="pax">Pax:
 												<i class="im im-icon-MaleFemale"></i>
-												<input min="1" type="number" class="input-text" name="pax" value="" required/>
+												<input min="1" type="number" class="input-text" name="pax" value="" v-model="pax" required/>
 											</label>
 										</div>
 										{{-- <div class="col-md-6">
@@ -341,15 +342,15 @@
 										<div class="col-md-12">
 											<label for="note">Note:
 												{{-- <i class="im im-icon-Notepad"></i> --}}
-												<textarea name="note" rows="4" cols="80" class="input-text"></textarea>
+												<textarea name="note" rows="4" cols="80" class="input-text" v-model="note"></textarea>
 												{{-- <input type="text" class="input-text" name="note"/> --}}
 											</label>
 										</div>
 									</div>
 
 									<div class="form-row">
-										{{csrf_field()}}
-										<input type="submit" class="button border margin-top-5"/>
+										{{-- {{csrf_field()}} --}}
+										<input type="submit" class="button border margin-top-5" v-on:click.prevent="store()"/>
 									</div>
 								</form>
 							</div>
@@ -451,21 +452,21 @@
 
   <link href="{{ URL::to('assets/css/plugins/datedropper.css') }}" rel="stylesheet" type="text/css">
   <script src="{{ URL::to('assets/scripts/datedropper.js') }}"></script>
-  <script>$('#booking-date').dateDropper();</script>
-
   <script src="{{ URL::to('assets/scripts/timedropper.js') }}"></script>
   <link rel="stylesheet" type="text/css" href="{{ URL::to('assets/css/plugins/timedropper.css') }}">
-  <script>
-	this.$('#booking-time').timeDropper({
-		setCurrentTime: false,
-		meridians: true,
-		primaryColor: "#f91942",
-		borderColor: "#f91942",
-		minutesInterval: '15'
-	});
 
-	var $clocks = $('.td-input');
-  </script>
+	{{-- <script>$('#booking-date').dateDropper();</script>
+	<script>
+		this.$('#booking-time').timeDropper({
+			setCurrentTime: false,
+			meridians: true,
+			primaryColor: "#f91942",
+			borderColor: "#f91942",
+			minutesInterval: '15'
+		});
+
+		var $clocks = $('.td-input');
+	</script> --}}
 
 {{-- <script type="text/javascript">
 	var vue = new Vue({
@@ -492,4 +493,52 @@
 		}
 	});
 </script> --}}
+
+<script type="text/javascript">
+	var vue = new Vue({
+		el: '#booking-dialog',
+		data: {
+			admin_name: 'online',
+			customer_name: '',
+			telp: '',
+			email: '',
+			pax: '',
+			date: '',
+			time: '',
+			note: '',
+			errors: ''
+		},
+		mounted: function () {
+			$('#booking-date').dateDropper();
+
+			$('#booking-time').timeDropper({
+				setCurrentTime: false,
+				meridians: true,
+				primaryColor: "#f91942",
+				borderColor: "#f91942",
+				minutesInterval: '15'
+			});
+		},
+		methods: {
+			store: function(){
+				var self = this;
+				axios.post('https://eatzee-resto.herokuapp.com/api/reservation', {
+					admin_name: 'online',
+					customer_name: this.customer_name,
+					telp: this.telp,
+					email: this.email,
+					pax: this.pax,
+					date: this.date,
+					time: this.time,
+					note: this.note,
+					_token : "{{ csrf_token() }}"
+				}).then(function (response) {
+					self.modalClose('#booking-dialog');
+				}).catch(function (error) {
+					self.errors = error.response.data.errors;
+				});
+			}
+		}
+	});
+</script>
 @endsection
