@@ -30,7 +30,7 @@
 							@endif
 
 							@if ($response_resto->status_reservation ==  true && $response_resto->status_delivery_only == false)
-								<a href="#"><span class="listing-online"><i class="sl sl-icon-check"></i> Open Table</span></a>
+								<a href="#"><span class="listing-online"><i class="sl sl-icon-check"></i> Reservation</span></a>
 							@endif
 
 							@if ($response_resto->status_delivery_only == true)
@@ -272,7 +272,7 @@
 								<input type="text" id="booking-time" value="9:00 am">
 							</div>
 						</div> --}}
-						<button href="#booking-dialog" class="progress-button button fullwidth margin-top-5 sign-in popup-with-zoom-anim"><span>Open Table</span></button>
+						<button href="#booking-dialog" class="progress-button button fullwidth margin-top-5 sign-in popup-with-zoom-anim"><span>Reservation</span></button>
 					</div>
 
 					<!-- Modal Reservation -->
@@ -313,6 +313,20 @@
 									<div class="row">
 										<div class="col-md-6">
 											<label for="date">Date:
+												<i class="im im-icon-Calendar"></i>
+												<input type="date" name="date" v-model="date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
+											</label>
+										</div>
+										<div class="col-md-6">
+											<label for="time">Time:
+												<i class="im im-icon-Timer"></i>
+												<input type="time" name="time" v-model="time" value="9:00">
+											</label>
+										</div>
+									</div>
+									{{-- <div class="row">
+										<div class="col-md-6">
+											<label for="date">Date:
 												<i class="im im-icon-Timer"></i>
 												<input type="text" id="booking-date" name="date" v-model="date" data-lang="en" data-large-mode="true" data-min-year="2018" data-max-year="2050">
 											</label>
@@ -323,7 +337,7 @@
 												<input type="text" id="booking-time" name="time" v-model="time" value="9:00 am">
 											</label>
 										</div>
-									</div>
+									</div> --}}
 									<div class="row">
 										<div class="col-md-6">
 											<label for="pax">Pax:
@@ -508,17 +522,17 @@
 			note: '',
 			errors: ''
 		},
-		mounted: function () {
-			$('#booking-date').dateDropper();
-
-			$('#booking-time').timeDropper({
-				setCurrentTime: false,
-				meridians: true,
-				primaryColor: "#f91942",
-				borderColor: "#f91942",
-				minutesInterval: '15'
-			});
-		},
+		// mounted: function () {
+		// 	$('#booking-date').dateDropper();
+		//
+		// 	$('#booking-time').timeDropper({
+		// 		setCurrentTime: false,
+		// 		meridians: true,
+		// 		primaryColor: "#f91942",
+		// 		borderColor: "#f91942",
+		// 		minutesInterval: '15'
+		// 	});
+		// },
 		methods: {
 			store: function(){
 				var self = this;
