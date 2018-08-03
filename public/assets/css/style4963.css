@@ -11690,7 +11690,25 @@ button.mfp-close {
     color: #fff;
 }
 
+#small-dialog .mfp-close,
+#booking-dialog,
+.mfp-close,
+.mfp-close:hover {
+    color: #fff;
+}
+
 #sign-in-dialog .mfp-close,
+#small-dialog .mfp-close {
+    color: #666;
+    background-color: #e4e4e4;
+    border-radius: 50%;
+    top: 28px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+#booking-dialog .mfp-close,
 #small-dialog .mfp-close {
     color: #666;
     background-color: #e4e4e4;
@@ -11708,8 +11726,25 @@ button.mfp-close {
     background-color: #66676b;
 }
 
+#booking-dialog .mfp-close:hover,
+#small-dialog .mfp-close:hover {
+    color: #fff;
+    transform: rotate(0);
+    background-color: #66676b;
+}
+
 #sign-in-dialog .mfp-close::after,
 #sign-in-dialog .mfp-close::before,
+#small-dialog .mfp-close::after,
+#small-dialog .mfp-close::before {
+    top: 4px;
+    height: 9px;
+    font-size: 21px;
+    transition: 0s;
+}
+
+#booking-dialog .mfp-close::after,
+#booking-dialog .mfp-close::before,
 #small-dialog .mfp-close::after,
 #small-dialog .mfp-close::before {
     top: 4px;
@@ -11858,11 +11893,33 @@ button.mfp-close {
     border-radius: 4px;
 }
 
+#booking-dialog,
+#small-dialog {
+    background: #fff;
+    padding: 40px;
+    padding-top: 0;
+    text-align: left;
+    max-width: 610px;
+    margin: 40px auto;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
 #sign-in-dialog {
     max-width: 500px;
 }
 
+#booking-dialog {
+    /* max-width: 500px; */
+}
+
 #sign-in-dialog span.line,
+#small-dialog span.line {
+    padding-top: 0;
+}
+
+#booking-dialog span.line,
 #small-dialog span.line {
     padding-top: 0;
 }
@@ -14175,7 +14232,39 @@ h4 span.headline-detail {
         padding: 30px;
         padding-top: 0;
     }
+    #booking-dialog,
+    #small-dialog {
+        background: #fff;
+        padding: 30px;
+        padding-top: 0;
+    }
     #sign-in-dialog .mfp-close,
+    #small-dialog .mfp-close {
+        top: 24px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+    }
+    .list-box-listing {
+        display: block;
+    }
+    .list-box-listing-content .inner {
+        position: relative;
+        top: 0;
+        transform: translateY(0);
+        display: inline-block;
+    }
+    .header-widget {
+        height: auto;
+    }
+    .list-box-listing-img {
+        max-width: 100%;
+    }
+    .list-box-listing-content {
+        padding-left: 0;
+        padding-top: 10px;
+    }
+    #booking-dialog .mfp-close,
     #small-dialog .mfp-close {
         top: 24px;
         right: 30px;
@@ -14249,6 +14338,59 @@ h4 span.headline-detail {
         line-height: 30Px;
     }
     #sign-in-dialog,
+    #small-dialog {
+        max-width: 75vw;
+    }
+    .listing-nav li a {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px;
+        width: 100%;
+        display: block;
+        padding-left: 0;
+        border-color: #e8e8e8;
+    }
+    .listing-nav li {
+        margin-right: 0;
+        display: block;
+    }
+    .listing-nav-container .listing-nav li:first-child a {
+        padding-top: 0;
+    }
+    .listing-nav-container.cloned .listing-nav li:first-child a.active,
+    .listing-nav-container.cloned .listing-nav li:first-child a:hover,
+    .listing-nav li:first-child a,
+    .listing-nav li a.active,
+    .listing-nav li a:hover {
+        border-color: #e8e8e8;
+    }
+    .dashboard-content .checkboxes label {
+        width: 100%;
+    }
+    .pricing-list-item td {
+        display: block;
+        width: 100%;
+        position: relative;
+    }
+    .pricing-list-item td .fm-input,
+    .pricing-list-item td .fm-input.pricing-price,
+    .pricing-list-item td .fm-input.pricing-name {
+        max-width: 100%;
+        margin-right: 0;
+    }
+    .pricing-list-item td .fm-close {
+        text-align: left;
+        position: absolute;
+        top: 4px;
+        right: 0;
+    }
+    .about-author img {
+        width: 70px;
+        height: 70px;
+    }
+    .about-description {
+        margin: 2px 0 0 100px;
+    }
+    #booking-dialog,
     #small-dialog {
         max-width: 75vw;
     }

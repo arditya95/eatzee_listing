@@ -47,7 +47,7 @@
 		<!-- Copyright -->
 		<div class="row">
 			<div class="col-md-12">
-				<div class="copyrights">© 2017 Eatzee. Powered by Ganeshcom Studio.</div>
+				<div class="copyrights">© 2018 Eatzee. Powered by Ganeshcom Studio.</div>
 			</div>
 		</div>
 	</div>

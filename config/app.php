@@ -180,7 +180,7 @@ return [
         Jleon\LaravelPnotify\NotifyServiceProvider::class,
         Chencha\Share\ShareServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -232,7 +232,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Notify' => Jleon\LaravelPnotify\Notify::class,
         'Share' => Chencha\Share\ShareFacade::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
